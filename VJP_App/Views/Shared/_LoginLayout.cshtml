@@ -1,0 +1,129 @@
+﻿@model VJP_Entity.User
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Virtual Judge Panel @ViewBag.Title</title>
+    
+    @Styles.Render("~/Content/bootstrap") @Styles.Render("~/Content/Site") @Styles.Render("~/Content/fontawesome") @Styles.Render("~/Content/animate") @Styles.Render("~/Content/css-hamburgers") @Styles.Render("~/Content/select2") @Styles.Render("~/Content/Login")
+    <link href="~/Content/css/Login/main.css" rel="stylesheet" />
+</head>
+
+<body id="page-top">
+    @RenderBody()
+
+    @*Nav Bar*@
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/Home/Index">Virtual Judge Panel</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/AccountType">Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Users">User</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/SignUp">Sign Up</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="limiter">
+        <div class="container-login100" style="min-height: 100vh">
+            <div class="wrap-login100">
+                <div class="login100-pic js-tilt" data-tilt>
+                    <img src="~/Content/images/img-01.png" />
+                </div>
+                <div class="login100-form validate-form">
+                    <span class="login100-form-title">
+                        Login
+                    </span> @using (Html.BeginForm("Index", "Login", FormMethod.Post))
+                    {@Html.AntiForgeryToken() @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+
+                        @Html.EditorFor(model => model.Email, new { htmlattributes = new { @class = "form-control input100", placeholder = "email" } }) @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger valid" })
+
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-envelope awesome" aria-hidden="true"></i>
+                        </span>
+
+                    </div>
+
+
+
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control input100", placeholder = "Password" } }) @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger valid" })
+
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock awesome" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div class="container-login100-form-btn">
+                        <button class="btn btn-outline-success" type="submit" style="border-radius: 25px; padding: 10px 115px 10px 115px; margin-right: 10px;">
+                            @*<button class="login100-form-btn" type="submit">*@
+                            Login
+                        </button>
+                    </div>
+
+                    <div class="text-center p-t-12">
+                        <span class="txt1">
+                            Forgot
+                        </span>
+                        <a class="txt2" href="#">
+                            Username / Password?
+                        </a>
+                    </div>
+                    @ViewBag.Notfound
+
+                    <div class="text-center p-t-136">
+                        <a class="txt2" href="/Registration/Create">
+                            Create your Account
+                            <i class="fa fa-long-arrow-alt-right aria-hidden="true"></i>
+                        </a>
+                    </div>
+                }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--===============================================================================================-->
+
+    @Scripts.Render("~/bundles/jquery") @Scripts.Render("~/bundles/jqueryval") @*@Scripts.Render("~/bundles/modernizr")*@ @Scripts.Render("~/bundles/bootstrap") @Scripts.Render("~/bundles/select2") @Scripts.Render("~/bundles/tilt") @Scripts.Render("~/bundles/Login")
+
+    <script>
+        $('.js-tilt').tilt({
+            scale: 1.1,
+        })
+    </script>
+</body>
+
+</html>

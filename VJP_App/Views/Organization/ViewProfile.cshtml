@@ -1,0 +1,13 @@
+﻿@model VJP_Entity.Organization
+@{
+    ViewBag.Title = "ViewProfile";
+    Layout = "~/Views/Shared/_OrganizationLayout.cshtml";
+}
+
+<h2>ViewProfile</h2>
+
+Name : @Model.Name<br />
+Address : @Model.Address <br />
+WebUrl : @Model.WebUrl<br />
+Description : @Model.Description<br />
+<a href="EditProfile">Edit</a>

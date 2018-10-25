@@ -1,0 +1,37 @@
+﻿@model VJP_Entity.EventCategory
+
+@{
+    ViewBag.Title = "DeleteCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<br/>
+<br />
+<h2>DeleteCategory</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>EventCategory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "EventCategory")
+        </div>
+        @TempData["ErrorM"]
+    }
+</div>

@@ -1,0 +1,245 @@
+﻿@*@model IEnumerable<VJP_Repository.UserRepository>
+
+    @{
+        /**/
+
+        /**/
+
+        Layout = null;
+    }
+
+    @*<!DOCTYPE HTML>
+    <html>
+    <head>
+        <title>Teacher</title>
+
+
+    </head>
+    <body bgcolor="white">
+        <table border=1 width="100%" border=0 cellpadding="0" cellspacing="0">
+            <tr style="height:10vh;background-color: rgb(160, 160, 160);">
+                <td align="center" width="20%" align="center"> <strong><h1><a id="links" href="~/Teacher/Index">ExamCenter</a></h1> </strong></td>
+                <td align="right" width="80%"><a id="links" href="~/LogOut/Index">LogOut</a></td>
+
+            </tr>
+
+            <tr style="height:85vh;">
+                <td align="left" width="20%" style="background-color: rgb(160, 160, 160);">
+                    <a id="nav" href="~/Admin/Index">Home</a><br>
+                    <br>  <a id="nav" href="~/Admin/UserList">UserList</a><br>
+                    <br>  <a id="nav" href="~/Admin/EventList">EventList</a><br>
+
+
+
+                </td>
+                <td width="70%" align="center">
+                    <div>
+                        <form method="post">
+                            Email : <input name="Email" /> <br>
+                            Password : <input name="Password" type="password" /> <br>
+                            Confirm Password : <input name="cPassword" type="password" /> <br>
+                            Account Type :*@
+@*<select name="AccountType_Id">
+    @foreach (var item in ViewBag.Type)
+    {
+        <option value=@item.Id>@item.Type</option>
+    }
+    </select>*@
+
+@*<div class="form-group">
+        @Html.LabelFor(model => model.AccountType_Id, "Account Type", htmlAttributes: new { @class = "control-label col-md-6" })
+        <div class="col-md-10">
+            @Html.DropDownList("AccountType_Id", new SelectList(ViewBag.AccountyType_Id, "Value", "Text"), "-- Select Account Type --", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.AccountType_Id, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+@*<input type="submit" value="CreateUser" />
+                        </form>
+
+    </div>
+
+                </td>
+            </tr>
+
+        </table>
+    </body>
+    </html>*@
+
+
+
+
+
+
+
+
+
+
+
+
+@model VJP_Entity.User
+
+@{
+    ViewBag.Title = "Create";
+
+    Layout = null;
+}
+@Styles.Render("~/Content/bootstrap")
+
+@Styles.Render("~/Content/SignUp")
+@Styles.Render("~/Content/fontawesome")
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/Home/Index">Virtual Judge Panel</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin/EventList">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin/UserList">Users</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div id="particles-js">
+
+    <div class="col-sm-12" style="
+
+        top: 20%;
+        width: 58%;
+        left: 20%;
+        /* right: 8%; */
+        /* min-height: 94.9vh; */
+        height: 56%;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        /* padding: 15px; */
+        position: absolute;
+
+    ">
+        <div class="col-12" style="
+
+            width: 92%;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 6% 1% 6% 8%;
+            position: absolute;
+            /* margin-top: 15%; */
+            /* margin-left: 2%; */
+
+        ">
+            <div style="display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            ">
+                <h1>Register here</h1>
+                <i class="fas fa-user-plus fa-10x"></i>
+            </div>
+
+            @using (Html.BeginForm("CreateUser", "Admin", FormMethod.Post, new { @style = "min-width: 350px" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @id = "Email", @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @id = "Email", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                            @Html.LabelFor(model => model.AccountType_Id, "Account Type", htmlAttributes: new { @class = "control-label col-md-6" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("AccountType_Id", new SelectList(ViewBag.AccountyType_Id, "Value", "Text"), "-- Select Account Type --", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.AccountType_Id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Sign Up" class="btn btn-outline-success btn-block" />
+                        </div>
+                    </div>
+
+                </div>
+            }
+
+            <h3>
+                @ViewBag.Avalilabe
+                @TempData["CreateFailed"]
+            </h3>
+        </div>
+    </div>
+</div>
+
+
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/SignUp")
+<script type="text/javascript">
+
+    var count_particles, stats, update;
+    stats = new Stats;
+    stats.setMode(0);
+    stats.domElement.style.position = 'absolute';
+    stats.domElement.style.left = '0px';
+    stats.domElement.style.top = '0px';
+    document.body.appendChild(stats.domElement);
+    count_particles = document.querySelector('.js-count-particles');
+    update = function () {
+        stats.begin();
+        stats.end();
+        requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+
+</script>

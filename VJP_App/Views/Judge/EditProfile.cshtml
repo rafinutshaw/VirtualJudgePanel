@@ -1,0 +1,18 @@
+﻿@model VJP_Entity.Judge
+@{
+    ViewBag.Title = "ViewProfile";
+    Layout = "~/Views/Shared/_JudgeLayout.cshtml";
+}
+
+<h2>Edit Profile</h2>
+<form method="post">
+    First Name : <input name="FirstName" value=@TempData["Fname"]><br />
+    Last Name : <input name="LastName" value=@TempData["Lname"]> <br />
+    Gender : <input name="Gender" value=@TempData["Gen"]><br />
+    About : <input name="About" value="@TempData["Abt"]" ><br />
+    Current Password : <input  name="OldPassword" type="password"><br />
+    New Password : <input  name="NewPassword" type="password"><br />
+    Confirm Password : <input  name="CNewPassword" type="password"><br />
+    <input type="submit" value="Save Changes">
+    @TempData["Error"]
+    </form>

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<VJP_Repository.UserRepository>
+
+@{
+    /**/
+
+    /**/
+
+    Layout = null;
+}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Teacher</title>
+
+
+</head>
+<body bgcolor="white">
+    <table border=1 width="100%" border=0 cellpadding="0" cellspacing="0">
+        <tr style="height:10vh;background-color: rgb(160, 160, 160);">
+            <td align="center" width="20%" align="center"> <strong><h1><a id="links" href="~/Teacher/Index">ExamCenter</a></h1> </strong></td>
+            <td align="right" width="80%"><a id="links" href="~/LogOut/Index">LogOut</a></td>
+
+        </tr>
+
+        <tr style="height:85vh;">
+            <td align="left" width="20%" style="background-color: rgb(160, 160, 160);">
+                <a id="nav" href="~/Admin/Index">Home</a><br>
+                <br>  <a id="nav" href="~/Admin/UserList">UserList</a><br>
+                <br>  <a id="nav" href="~/Admin/EventList">EventList</a><br>
+
+
+
+            </td>
+            <td width="70%" align="center">
+                <div> x="disabled"; hid="hidden";
+                    <form method="post">
+                        Email : <input name="Email" disabled /> <br>
+                        Password : <input name="Password" type="password"  /> <br>
+                        Account Type :
+                        <select name="AccountType_Id">
+                            @foreach (var item in ViewBag.Type)
+                            {
+                                <option value=@item.Id>@item.Type</option>
+                            }
+                        </select>
+                        <input type="submit" value="CreateUser" />
+                    </form>
+
+                </div>
+
+            </td>
+        </tr>
+
+    </table>
+</body>
+</html>

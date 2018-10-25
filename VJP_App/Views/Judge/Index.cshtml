@@ -1,0 +1,32 @@
+﻿@model IEnumerable<VJP_Entity.Event>
+
+@{
+                /**/
+
+                ViewBag.Title = "Index";
+                Layout = "~/Views/Shared/_JudgeLayout.cshtml";
+}
+
+<table class="table" border="3">
+    <tr align="center"><td>Title</td><td>Start At</td><td>Closed At</td><td>Event Category</td><td>Description</td></tr>
+
+
+    @foreach (var item in Model)
+    {
+        if (item.ClosingDate >= DateTime.Now)
+        {
+            <tr align="center">
+              
+                <td> @item.EventTitle </td>
+
+                <td> @item.StartingDate </td>
+                <td> @item.ClosingDate </td>
+                <td> @item.EventCategory.CategoryName </td>
+              
+                <td> @item.Description </td>
+            </tr>
+        }
+    }
+
+
+</table>

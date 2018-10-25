@@ -1,0 +1,143 @@
+﻿@*@model IEnumerable<VJP_Entity.User>
+
+    @{
+                    /**/
+
+                    /**/
+
+                    Layout = null;
+    }
+
+    <!DOCTYPE HTML>
+    <html>
+    <head>
+        <title>Teacher</title>
+
+
+    </head>
+    <body bgcolor="white">
+        <table border=1 width="100%" border=0 cellpadding="0" cellspacing="0">
+            <tr style="height:10vh;background-color: rgb(160, 160, 160);">
+                <td align="center" width="20%" align="center"> <strong><h1><a id="links" href="~/Teacher/Index">ExamCenter</a></h1> </strong></td>
+                <td align="right" width="80%"><a id="links" href="~/LogOut/Index">LogOut</a></td>
+
+            </tr>
+
+            <tr style="height:85vh;">
+                <td align="left" width="20%" style="background-color: rgb(160, 160, 160);">
+                    <a id="nav" href="~/Admin/Index">Home</a><br>
+                    <br>  <a id="nav" href="~/Admin/UserList">UserList</a><br>
+                    <br>  <a id="nav" href="~/Admin/EventList">EventList</a><br>
+
+
+
+                </td>
+                <td width="70%" align="center">
+                    <div>
+                        UpComing Events
+                        <br>
+                        @Html.ActionLink("Add User", "CreateUser")
+                        <table>
+                            <tr align="center"><td>Name</td><td>Email</td><td>UserType</td></tr>
+
+
+                            @foreach (var item in Model)
+                            {
+
+                                <tr align="center">
+                                    <td> @item.Id </td>
+                                    <td> @item.Email </td>
+                                    <td> @item.AccountType.Type </td>
+                                </tr>
+
+                            }
+
+
+                        </table>
+
+                    </div>
+
+                </td>
+            </tr>
+
+        </table>
+    </body>
+    </html>*@
+
+
+@model IEnumerable<VJP_Entity.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<hr />
+<hr />
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Add User", "CreateUser")
+</p>
+<table class="table" border="3">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountType.Type)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImagePath)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountType.Type)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImagePath)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+<h4>
+    @TempData["Create"]
+    @TempData["Deleted"]
+</h4>

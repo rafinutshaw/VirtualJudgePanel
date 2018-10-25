@@ -1,0 +1,13 @@
+﻿@model VJP_Entity.Judge
+@{
+    ViewBag.Title = "ViewProfile";
+    Layout = "~/Views/Shared/_JudgeLayout.cshtml";
+}
+
+<h2>ViewProfile</h2>
+
+First Name : @Model.FirstName<br/>
+Last Name : @Model.LastName <br />
+Gender : @Model.Gender<br />
+About : @Model.About<br />
+<a href="EditProfile">Edit</a>

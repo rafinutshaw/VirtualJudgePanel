@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A5938C8A-87C3-4F83-A29B-584397F9B2D4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VJP_Repository</RootNamespace>
+    <AssemblyName>VJP_Repository</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountTypeRepository.cs" />
+    <Compile Include="CommentsRepository.cs" />
+    <Compile Include="EducationDetailsRepository.cs" />
+    <Compile Include="EventCategoryRepository.cs" />
+    <Compile Include="EventRepository.cs" />
+    <Compile Include="ExperienceDetailsRepository.cs" />
+    <Compile Include="JobApplyActivityRepository.cs" />
+    <Compile Include="JobCategoryRepository.cs" />
+    <Compile Include="JobPostRepository.cs" />
+    <Compile Include="JudgeRepository.cs" />
+    <Compile Include="Migrations\201807261606461_initial.cs" />
+    <Compile Include="Migrations\201807261606461_initial.Designer.cs">
+      <DependentUpon>201807261606461_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807261729230_CreateDateNotNull.cs" />
+    <Compile Include="Migrations\201807261729230_CreateDateNotNull.Designer.cs">
+      <DependentUpon>201807261729230_CreateDateNotNull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807261741051_modificationDateCancel.cs" />
+    <Compile Include="Migrations\201807261741051_modificationDateCancel.Designer.cs">
+      <DependentUpon>201807261741051_modificationDateCancel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807271108163_demoUser.cs" />
+    <Compile Include="Migrations\201807271108163_demoUser.Designer.cs">
+      <DependentUpon>201807271108163_demoUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807280855561_username.cs" />
+    <Compile Include="Migrations\201807280855561_username.Designer.cs">
+      <DependentUpon>201807280855561_username.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807280900167_confirmPassword.cs" />
+    <Compile Include="Migrations\201807280900167_confirmPassword.Designer.cs">
+      <DependentUpon>201807280900167_confirmPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807280905102_createdate.cs" />
+    <Compile Include="Migrations\201807280905102_createdate.Designer.cs">
+      <DependentUpon>201807280905102_createdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807280913587_UsermodelDone.cs" />
+    <Compile Include="Migrations\201807280913587_UsermodelDone.Designer.cs">
+      <DependentUpon>201807280913587_UsermodelDone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807281930327_demo.cs" />
+    <Compile Include="Migrations\201807281930327_demo.Designer.cs">
+      <DependentUpon>201807281930327_demo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807281931152_Gender.cs" />
+    <Compile Include="Migrations\201807281931152_Gender.Designer.cs">
+      <DependentUpon>201807281931152_Gender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807281935320_GenderClose.cs" />
+    <Compile Include="Migrations\201807281935320_GenderClose.Designer.cs">
+      <DependentUpon>201807281935320_GenderClose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807281946365_STD_JUGE_EDU_EXP_Add.cs" />
+    <Compile Include="Migrations\201807281946365_STD_JUGE_EDU_EXP_Add.Designer.cs">
+      <DependentUpon>201807281946365_STD_JUGE_EDU_EXP_Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807281950389_ExpID.cs" />
+    <Compile Include="Migrations\201807281950389_ExpID.Designer.cs">
+      <DependentUpon>201807281950389_ExpID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807281956493_ExpID_EDUID_Cancel.cs" />
+    <Compile Include="Migrations\201807281956493_ExpID_EDUID_Cancel.Designer.cs">
+      <DependentUpon>201807281956493_ExpID_EDUID_Cancel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807291813428_Gender1.cs" />
+    <Compile Include="Migrations\201807291813428_Gender1.Designer.cs">
+      <DependentUpon>201807291813428_Gender1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807291952488_JobSectionDone.cs" />
+    <Compile Include="Migrations\201807291952488_JobSectionDone.Designer.cs">
+      <DependentUpon>201807291952488_JobSectionDone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808131244458_Event_Project.cs" />
+    <Compile Include="Migrations\201808131244458_Event_Project.Designer.cs">
+      <DependentUpon>201808131244458_Event_Project.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808131406478_Rating_Comment.cs" />
+    <Compile Include="Migrations\201808131406478_Rating_Comment.Designer.cs">
+      <DependentUpon>201808131406478_Rating_Comment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808131518139_Rating_Comment_1.cs" />
+    <Compile Include="Migrations\201808131518139_Rating_Comment_1.Designer.cs">
+      <DependentUpon>201808131518139_Rating_Comment_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809250547079_eventCategory.cs" />
+    <Compile Include="Migrations\201809250547079_eventCategory.Designer.cs">
+      <DependentUpon>201809250547079_eventCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809250550084_eventCategory_new.cs" />
+    <Compile Include="Migrations\201809250550084_eventCategory_new.Designer.cs">
+      <DependentUpon>201809250550084_eventCategory_new.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809250554249_eventCategory_new_2.cs" />
+    <Compile Include="Migrations\201809250554249_eventCategory_new_2.Designer.cs">
+      <DependentUpon>201809250554249_eventCategory_new_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809250603370_eventCategory_new_3.cs" />
+    <Compile Include="Migrations\201809250603370_eventCategory_new_3.Designer.cs">
+      <DependentUpon>201809250603370_eventCategory_new_3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810070646557_student_reg_change.cs" />
+    <Compile Include="Migrations\201810070646557_student_reg_change.Designer.cs">
+      <DependentUpon>201810070646557_student_reg_change.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810070656264_judge_org_change.cs" />
+    <Compile Include="Migrations\201810070656264_judge_org_change.Designer.cs">
+      <DependentUpon>201810070656264_judge_org_change.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="OrganizationRepository.cs" />
+    <Compile Include="ProjectCategoryRepository.cs" />
+    <Compile Include="ProjectGroupRepository.cs" />
+    <Compile Include="ProjectRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RatingRepository.cs" />
+    <Compile Include="Repository.cs" />
+    <Compile Include="StudentRepository.cs" />
+    <Compile Include="UserRepository.cs" />
+    <Compile Include="VJPDBContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VJP_Entity\VJP_Entity.csproj">
+      <Project>{616fef24-6db1-40fb-92fc-24b29270999a}</Project>
+      <Name>VJP_Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VJP_Interface\VJP_Interface.csproj">
+      <Project>{62cc6b46-7b77-4517-89e3-5a2b4d6696e1}</Project>
+      <Name>VJP_Interface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201807261606461_initial.resx">
+      <DependentUpon>201807261606461_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807261729230_CreateDateNotNull.resx">
+      <DependentUpon>201807261729230_CreateDateNotNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807261741051_modificationDateCancel.resx">
+      <DependentUpon>201807261741051_modificationDateCancel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807271108163_demoUser.resx">
+      <DependentUpon>201807271108163_demoUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807280855561_username.resx">
+      <DependentUpon>201807280855561_username.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807280900167_confirmPassword.resx">
+      <DependentUpon>201807280900167_confirmPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807280905102_createdate.resx">
+      <DependentUpon>201807280905102_createdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807280913587_UsermodelDone.resx">
+      <DependentUpon>201807280913587_UsermodelDone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807281930327_demo.resx">
+      <DependentUpon>201807281930327_demo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807281931152_Gender.resx">
+      <DependentUpon>201807281931152_Gender.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807281935320_GenderClose.resx">
+      <DependentUpon>201807281935320_GenderClose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807281946365_STD_JUGE_EDU_EXP_Add.resx">
+      <DependentUpon>201807281946365_STD_JUGE_EDU_EXP_Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807281950389_ExpID.resx">
+      <DependentUpon>201807281950389_ExpID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807281956493_ExpID_EDUID_Cancel.resx">
+      <DependentUpon>201807281956493_ExpID_EDUID_Cancel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807291813428_Gender1.resx">
+      <DependentUpon>201807291813428_Gender1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807291952488_JobSectionDone.resx">
+      <DependentUpon>201807291952488_JobSectionDone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808131244458_Event_Project.resx">
+      <DependentUpon>201808131244458_Event_Project.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808131406478_Rating_Comment.resx">
+      <DependentUpon>201808131406478_Rating_Comment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808131518139_Rating_Comment_1.resx">
+      <DependentUpon>201808131518139_Rating_Comment_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809250547079_eventCategory.resx">
+      <DependentUpon>201809250547079_eventCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809250550084_eventCategory_new.resx">
+      <DependentUpon>201809250550084_eventCategory_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809250554249_eventCategory_new_2.resx">
+      <DependentUpon>201809250554249_eventCategory_new_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809250603370_eventCategory_new_3.resx">
+      <DependentUpon>201809250603370_eventCategory_new_3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810070646557_student_reg_change.resx">
+      <DependentUpon>201810070646557_student_reg_change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810070656264_judge_org_change.resx">
+      <DependentUpon>201810070656264_judge_org_change.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

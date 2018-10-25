@@ -1,0 +1,37 @@
+﻿@model VJP_Entity.Student
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+<br />
+<br />
+<br />
+<br />
+@*<div class="alert alert-warning alert-dismissible fade show" role="alert" style="">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
+    </button>
+    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+</div>*@
+
+<div class="container" style="max-width: 1400px; float: none; display:flex">
+
+    @foreach (var item in ViewBag.Event)
+    {
+        if (item.ClosingDate >= DateTime.Now)
+        {
+            <div class="m-5" style="max-width: 450px; max-height: 400px; height: 450px; width: 450px;">
+                <div class="card shadow p-3 mb-5 bg-white rounded" style="">
+                    <img class="card-img-top" src="" width="128" height="128">
+                    <div class="card-body">
+                        <h4 class="card-title">@item.EventTitle</h4>
+                        <p class="card-text">@item.Description</p>
+                        <a href="/Event/Details/@item.Id" class="btn btn-primary shadow rounded">Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
