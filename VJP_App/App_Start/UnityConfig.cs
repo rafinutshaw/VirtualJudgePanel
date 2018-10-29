@@ -21,7 +21,9 @@ namespace VJP_App
             container.RegisterType<ICommentsRepository, CommentsRepository>();
             container.RegisterType<IEducationDetailsRepository, EducationDetailsRepository>();
             container.RegisterType<IEventRepository, EventRepository>();
+            container.RegisterType<IEventSubscribeRepository, EventSubscribeRepository>();
             container.RegisterType<IEventCategoryRepository, EventCategoryRepository>();
+            container.RegisterType<IProjectCategoryEventRepository, ProjectCategoryEventRepository>();
             container.RegisterType<IExperienceDetailsRepository, ExperienceDetailsRepository>();
             container.RegisterType<IJobApplyActivityRepository, JobApplyActivityRepository>();
             container.RegisterType<IJobCategoryRepository, JobCategoryRepository>();
@@ -34,6 +36,7 @@ namespace VJP_App
             container.RegisterType<IRatingRepository, RatingRepository>();
             container.RegisterType<IStudentRepository, StudentRepository>();
             container.RegisterType<IUserRepository, UserRepository>();
+            
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

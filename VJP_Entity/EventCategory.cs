@@ -12,12 +12,12 @@ namespace VJP_Entity
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Category Name is required"), Display(Name = "Category Name")]
-        public string CategoryName { get; set; }
+        //[Required(ErrorMessage = "Category Name is required"), Display(Name = "Category Name")]
+        //public string CategoryName { get; set; }
 
-        //[ForeignKey("Event"), Display(Name = "Event")]
-        //public int EventId { get; set; }
+        ////[ForeignKey("Event"), Display(Name = "Event")]
+        ////public int EventId { get; set; }
 
-        public virtual List<Event> Events { get; set; }
+        //public virtual List<Event> Events { get; set; }
     }
 }

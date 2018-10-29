@@ -10,6 +10,7 @@ namespace VJP_Repository
 {
     public class UserRepository : Repository<User>, IUserRepository
     {
+
         VJPDBContext context = new VJPDBContext();
 
         public User GetByEmailAndPass(User u)

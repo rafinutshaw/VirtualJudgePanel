@@ -64,7 +64,8 @@
     ">
         <div class="col-12" style="
 
-            width: 92%;
+            /*width: 92%;*/
+            max-width: 1050px;
             background: #fff;
             border-radius: 10px;
             overflow: hidden;
@@ -75,13 +76,13 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            padding: 6% 1% 6% 8%;
+            padding: 10% 1% 6% 8%;
             position: absolute;
             /* margin-top: 15%; */
             /* margin-left: 2%; */
 
         ">
-            <div style="display: -webkit-box;
+            <div class="col-md-6" style="display: -webkit-box;
             display: -webkit-flex;
             display: -moz-box;
             display: -ms-flexbox;
@@ -95,7 +96,7 @@
                 <i class="fas fa-user-plus fa-10x"></i>
             </div>
 
-            @using (Html.BeginForm("Index", "SignUp", FormMethod.Post, new { @style = "min-width: 350px" }))
+            @using (Html.BeginForm("Index", "SignUp", FormMethod.Post, new { @class = "col-md-6", @style = "min-width: 350px" }))
             {
                 @Html.AntiForgeryToken()
 

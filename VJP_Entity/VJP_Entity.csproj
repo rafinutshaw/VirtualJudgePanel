@@ -45,6 +45,7 @@
     <Compile Include="Comments.cs" />
     <Compile Include="EducationDetails.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="EventSubscribe.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="EventCategory.cs" />
     <Compile Include="ExperienceDetails.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Judge.cs" />
     <Compile Include="Organization.cs" />
     <Compile Include="Project.cs" />
+    <Compile Include="ProjectCategoryEvent.cs" />
     <Compile Include="ProjectCategory.cs" />
     <Compile Include="ProjectGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

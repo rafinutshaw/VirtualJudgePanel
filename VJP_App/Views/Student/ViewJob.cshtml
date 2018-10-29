@@ -1,0 +1,97 @@
+﻿@model VJP_Entity.JobPost
+
+@{
+    ViewBag.Title = "ViewJob";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<h2>ViewJob</h2>
+<form method="post" enctype="multipart/form-data">
+    <div>
+        <h4>JobPost</h4>
+        <hr />
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.JobCategory.Type)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.JobCategory.Type)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Organization.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Organization.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.JobTitle)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.JobTitle)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FullTimeJob)
+            </dt>
+
+            @if (Model.FullTimeJob == true)
+            {
+                <dd> Yes </dd>
+            }
+
+            else
+            {
+                <dd> No </dd>}
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PostingDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PostingDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LastDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastDate)
+            </dd>
+
+        </dl>
+    </div>
+    @if ((bool)TempData["Applied"] == false)
+    {
+        <input type="file" name="file">
+        <input class="btn btn-success" type="submit" value="ApplyJob">
+    }
+    else
+    { <input class="btn btn-success" type="submit" disabled value="Applied" onclick="location.href='@Url.Action("ViewJob", "Student")'">}
+</form>
+<p>
+    @TempData["Error"]
+    @Html.ActionLink("Back to List", "Jobs")
+</p>

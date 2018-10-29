@@ -7,26 +7,32 @@
                 Layout = "~/Views/Shared/_JudgeLayout.cshtml";
 }
 
-<table class="table" border="3">
-    <tr align="center"><td>Title</td><td>Start At</td><td>Closed At</td><td>Event Category</td><td>Description</td></tr>
+<div class="row">
+    <div class="container">
 
-
-    @foreach (var item in Model)
-    {
-        if (item.ClosingDate >= DateTime.Now)
+        <h4>Active Event</h4>
+        <hr />
+        @foreach (var item in Model)
         {
-            <tr align="center">
-              
-                <td> @item.EventTitle </td>
-
-                <td> @item.StartingDate </td>
-                <td> @item.ClosingDate </td>
-                <td> @item.EventCategory.CategoryName </td>
-              
-                <td> @item.Description </td>
-            </tr>
+            if (item.ClosingDate >= DateTime.Now)
+            {
+                <ul>
+                    <li>
+                        <div style="justify-content: space-between; display: flex; padding: 20px 1px 20px 1px;
+                        border: 1px solid #C2C7D0; border-radius: 10px; margin-bottom: 20px">
+                            <div style="padding-left: 30px; display: flex">
+                                <p style="padding-right:30px">@item.EventTitle</p>
+                                <p style="padding-right:30px">Starts at @item.StartingDate.ToShortDateString()</p>
+                                <p>Ends at @item.ClosingDate.ToShortDateString()</p>
+                            </div>
+                            <div style="display: flex;">
+                                <p style="padding-right:30px">@item.Description</p>
+                                <a style="padding: 0.15rem 0.8rem; margin-right: 20px" class="btn btn-outline-success btn-sm" href="/Judge/EventProjects/@item.Id">Details</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            }
         }
-    }
-
-
-</table>
+    </div>
+</div>

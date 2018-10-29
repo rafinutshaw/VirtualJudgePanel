@@ -16,13 +16,26 @@ namespace VJP_App.Controllers
     {
         private IAccountTypeRepository accountTypeRepository;
         private IUserRepository userRepository;
+        private IEventRepository eventRepository;
+        private IEventCategoryRepository eventCategoryRepository;
+        private IStudentRepository studentRepository;
+        private IJudgeRepository judgeRepository;
+        private IOrganizationRepository organizationRepository;
 
-        public UsersController(IAccountTypeRepository accountTypeRepository, IUserRepository userRepository)
+        public UsersController(IAccountTypeRepository accountTypeRepository,
+            IUserRepository userRepository, IEventRepository eventRepository,
+            IEventCategoryRepository eventCategoryRepository, IStudentRepository studentRepository,
+            IJudgeRepository judgeRepository, IOrganizationRepository organizationRepository)
         {
             this.accountTypeRepository = accountTypeRepository;
             this.userRepository = userRepository;
+            this.eventRepository = eventRepository;
+            this.eventCategoryRepository = eventCategoryRepository;
+            this.studentRepository = studentRepository;
+            this.judgeRepository = judgeRepository;
+            this.organizationRepository = organizationRepository;
         }
-        
+
         public ActionResult Index()
         {
             return View(userRepository.GetAll());
@@ -96,12 +109,39 @@ namespace VJP_App.Controllers
             return View(userRepository.Get(id));
         }
 
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirm(int id)
+        //{
+        //    userRepository.Delete(id);
+        //    TempData["Deleted"] = "User deleted";
+
+        //    return RedirectToAction("Index");
+        //}
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirm(int id)
         {
-            userRepository.Delete(id);
-            TempData["Deleted"] = "User deleted";
+            User user = userRepository.Get(id);
+
+            if (user.AccountType_Id == 2)
+            {
+                studentRepository.Delete(id);
+                userRepository.Delete(id);
+            }
+            else if (user.AccountType_Id == 3)
+            {
+                judgeRepository.Delete(id);
+                userRepository.Delete(id);
+                TempData["Deleted"] = "User deleted";
+            }
+            else if (user.AccountType_Id == 4)
+            {
+                organizationRepository.Delete(id);
+                userRepository.Delete(id);
+                TempData["Deleted"] = "User deleted";
+            }
 
             return RedirectToAction("Index");
         }

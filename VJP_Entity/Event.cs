@@ -23,11 +23,15 @@ namespace VJP_Entity
         [Column(TypeName = "DateTime2"), Display(Name = "Closing Date")]
         public DateTime ClosingDate { get; set; }
 
-        [ForeignKey("EventCategory"), Display(Name = "Category Type")]
-        public int EventCategory_Id { get; set; }
+        //[ForeignKey("EventCategory"), Display(Name = "Category Type")]
+        //public int EventCategory_Id { get; set; }
 
-        public virtual EventCategory EventCategory { get; set; }
+        //public virtual EventCategory EventCategory { get; set; }
 
         public List<ProjectCategory> ProjectCategory { get; set; }
+        public List<EventSubscribe> EventSubscribes { get; set; }
+        public List<ProjectCategoryEvent> ProjectCategoryEvents { get; set; }
+
+        //public string Imageath { get; set; }
     }
 }

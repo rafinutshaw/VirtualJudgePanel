@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -20,19 +21,25 @@ namespace VJP_Entity
         [ScaffoldColumn(false), Column(TypeName = "DateTime2"), Display(Name = "Posting Date")]
         public DateTime PostingDate { get; set; }
 
-        
+        public string Path { get; set; }
+
         [Required(ErrorMessage = "Event is required.")]
         [ForeignKey("Event"), Display(Name = "Event")]
         public int EventId { get; set; }
 
         public virtual Event Event { get; set; }
 
-        
-        [Required(ErrorMessage = "Event Category is required.")]
-        [ForeignKey("EventCategory"), Display(Name = "Event Category")]
-        public int EventCategoryId { get; set; }
+        [ForeignKey("Student"), Display(Name = "Posted by")]
+        public int PostedBy { get; set; }
 
-        public virtual EventCategory EventCategory { get; set; }
+        [Display(Name ="Rating"), DefaultValue("ture")]
+        public double TotalRatings { get; set; }
+
+        ////[Required(ErrorMessage = "Event Category is required.")]
+        ////[ForeignKey("EventCategory"), Display(Name = "Event Category")]
+        ////public int EventCategoryId { get; set; }
+
+        //public virtual EventCategory EventCategory { get; set; }
 
 
         [Required(ErrorMessage = "Category is required.")]
@@ -40,6 +47,7 @@ namespace VJP_Entity
         public int ProjectCategoryId { get; set; }
 
         public virtual ProjectCategory ProjectCategory { get; set; }
+        public virtual Student Student { get; set; }
 
 
 

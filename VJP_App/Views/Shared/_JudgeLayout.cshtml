@@ -26,6 +26,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/Judge/Index">Dashboard</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Judge/AllEvents">All Events</a>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
@@ -35,22 +38,14 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @*   <a class="dropdown-item" href="/Judge/Profile/@Session["id"]">*@
-                            <a href="@Url.Action("ViewProfile", "Judge")" class="dropdown-item">
-                                <i class="fa fa-user-circle">Profile</i>
+                            <a class="dropdown-item" href="/Judge/Edit/@Session["id"]">
+                                <i class="fa fa-user-edit"></i> Settings
                             </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fa fa-toggle-on"></i> Settings
+                            <a href="/Logout/Index" class="dropdown-item">
+                                <i class="fa fa-user-times"></i> Logout
                             </a>
                         </div>
                     </li>
-
-                    <li class="nav-item">
-                        <a href="/Logout/Index" class="nav-link">
-                            <i class="fa fa-user-times"></i> Logout
-                        </a>
-                    </li>
-
-
                 </ul>
                 @*<form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

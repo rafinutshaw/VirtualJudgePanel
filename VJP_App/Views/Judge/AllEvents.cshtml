@@ -1,0 +1,78 @@
+﻿@model IEnumerable<VJP_Entity.Event>
+
+@{
+    ViewBag.Title = "AllEvents";
+    Layout = "~/Views/Shared/_JudgeLayout.cshtml";
+}
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EventTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartingDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClosingDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClosingDate)
+            </td>
+            <td>
+                @if (item.ClosingDate <= DateTime.Now)
+                {@Html.ActionLink("Results", "ViewEventResult", new { eventId = item.Id }) }
+            </td>
+        </tr>
+    }
+
+</table>*@
+
+<div class="row">
+    <div class="container">
+
+        <h4>All Event</h4>
+        <hr />
+        @foreach (var item in Model)
+        {<ul>
+            <li>
+                <div style="justify-content: space-between; display: flex; padding: 20px 1px 20px 1px;
+                        border: 1px solid #C2C7D0; border-radius: 10px; margin-bottom: 20px">
+                    <div style="padding-left: 30px; display: flex">
+                        <p style="padding-right:30px">@item.EventTitle</p>
+                        <p style="padding-right:30px">Starts at @item.StartingDate.ToShortDateString()</p>
+                        <p>Ends at @item.ClosingDate.ToShortDateString()</p>
+                    </div>
+                    <div style="display: flex;">
+                        <p style="padding-right:30px">@item.Description</p>
+                        @if (item.ClosingDate <= DateTime.Now)
+                        {
+                            <a style="padding: 0.15rem 0.8rem; margin-right: 20px" class="btn btn-outline-success btn-sm" href="/Judge/EventProjects/@item.Id">Result</a>
+                        }
+                    </div>
+                </div>
+            </li>
+        </ul>
+        }
+    </div>
+</div>

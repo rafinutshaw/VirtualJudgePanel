@@ -21,13 +21,21 @@ namespace VJP_App.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            if (Session["email"] != null && Session["userType"] == "1")
+            if (Session["email"] != null && (int)Session["userType"] == 1)
             {
                 return RedirectToAction("Index", "Admin");
             }
-            else if (Session["email"] != null && Session["userType"] == "2")
+            else if (Session["email"] != null && (int)Session["userType"] == 2)
             {
                 return RedirectToAction("Index", "Student");
+            }
+            else if (Session["email"] != null && (int)Session["userType"] == 3)
+            {
+                return RedirectToAction("Index", "Judge");
+            }
+            else if (Session["email"] != null && (int)Session["userType"] == 4)
+            {
+                return RedirectToAction("Index", "Organization");
             }
             else
             {
@@ -47,6 +55,7 @@ namespace VJP_App.Controllers
                 {
                     Session["email"] = valid.Email;
                     Session["userType"] = valid.AccountType_Id;
+                    Session["userTypeName"] = valid.AccountType.Type;
                     Session["id"] = valid.Id;
 
                     if (valid.AccountType_Id == 1)

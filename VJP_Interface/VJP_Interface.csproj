@@ -45,6 +45,7 @@
     <Compile Include="IAccountTypeRepository.cs" />
     <Compile Include="ICommentsRepository.cs" />
     <Compile Include="IEducationDetailsRepository.cs" />
+    <Compile Include="IEventSubscribeRepostiory.cs" />
     <Compile Include="IEventCategoryRepostiory.cs" />
     <Compile Include="IEventRepository.cs" />
     <Compile Include="IExperienceDetailsRepository.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="IJobPostRepository.cs" />
     <Compile Include="IJudgeRepository.cs" />
     <Compile Include="IOrganizationRepository.cs" />
+    <Compile Include="IProjectCategoryEventRepository.cs" />
     <Compile Include="IProjectCategoryRepository.cs" />
     <Compile Include="IProjectGroupRepository.cs" />
     <Compile Include="IProjectRepository.cs" />

@@ -1,0 +1,27 @@
+﻿@model VJP_Entity.ProjectCategory
+
+@{
+    ViewBag.Title = "ProjectCategoryDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>ProjectCategoryDetails</h2>
+
+<div>
+    <h4>ProjectCategory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditCategory", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "CategoryList")
+</p>

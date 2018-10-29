@@ -51,8 +51,15 @@
 
     <div class="limiter">
         <div class="container-login100" style="min-height: 100vh">
-            <div class="wrap-login100">
-                <div class="login100-pic js-tilt" data-tilt>
+            <div class="col-md-10"
+                style="background-color: white;
+                display: flex;
+                justify-content: space-around;
+                padding-top: 5%;
+                padding-bottom: 2%;
+                border-radius: 25px;
+                max-width: 1050px">
+                <div class="col-md-4 js-tilt" data-tilt>
                     <img src="~/Content/images/img-01.png" />
                 </div>
                 <div class="login100-form validate-form">
@@ -100,7 +107,8 @@
                         </a>
                     </div>
                     @ViewBag.Notfound
-
+                    
+                        <p style="color: forestgreen">@TempData["Create"]</p>
                     <div class="text-center p-t-136">
                         <a class="txt2" href="/Registration/Create">
                             Create your Account

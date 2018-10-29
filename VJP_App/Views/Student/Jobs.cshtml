@@ -1,0 +1,82 @@
+﻿@model IEnumerable<VJP_Entity.JobPost>
+
+@{
+    ViewBag.Title = "Jobs";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<h2>Jobs</h2>
+
+<p>
+    @Html.ActionLink("View Applied", "AppliedJobs")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.JobCategory.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Organization.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullTimeJob)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostingDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastDate)
+        </th>
+        <th></th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobCategory.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Organization.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobTitle)
+        </td>
+        @if (item.FullTimeJob == true)
+        {
+            <td> Yes </td>
+        }
+
+        else
+        {
+            <td> No </td>}
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostingDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastDate)
+        </td>
+        <td>
+            @Html.ActionLink("View", "ViewJob", new { id = item.Id }) |
+
+        </td>
+
+    </tr>
+}
+
+</table>

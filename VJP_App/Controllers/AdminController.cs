@@ -8,9 +8,8 @@ using VJP_Entity;
 
 namespace VJP_App.Controllers
 {
-    public class AdminController : Controller
+    public class AdminController : BaseController
     {
-
         private IAccountTypeRepository accountTypeRepository;
         private IUserRepository userRepository;
         private IEventRepository eventRepository;
@@ -18,19 +17,25 @@ namespace VJP_App.Controllers
         private IStudentRepository studentRepository;
         private IJudgeRepository judgeRepository;
         private IOrganizationRepository organizationRepository;
+        private IProjectCategoryRepository projectCategoryRepository;
+        private IProjectCategoryEventRepository projectCategoryEventRepository;
 
-        public AdminController(IAccountTypeRepository accountTypeRepository, 
-            IUserRepository userRepository, IEventRepository eventRepository, 
-            IEventCategoryRepository eventCategoryRepository, IStudentRepository studentRepository, 
-            IJudgeRepository judgeRepository, IOrganizationRepository organizationRepository)
+        public AdminController(IAccountTypeRepository accountTypeRepository,
+            IUserRepository userRepository, IEventRepository eventRepository,
+            IEventCategoryRepository eventCategoryRepository, IStudentRepository studentRepository,
+            IJudgeRepository judgeRepository, IOrganizationRepository organizationRepository,
+            IProjectCategoryRepository projectCategoryRepository,
+            IProjectCategoryEventRepository projectCategoryEventRepository)
         {
             this.accountTypeRepository = accountTypeRepository;
             this.userRepository = userRepository;
             this.eventRepository = eventRepository;
-            this.eventCategoryRepository= eventCategoryRepository;
+            this.eventCategoryRepository = eventCategoryRepository;
             this.studentRepository = studentRepository;
             this.judgeRepository = judgeRepository;
             this.organizationRepository = organizationRepository;
+            this.projectCategoryRepository = projectCategoryRepository;
+            this.projectCategoryEventRepository = projectCategoryEventRepository;
         }
         // GET: Admin
         public ActionResult Index()
@@ -46,6 +51,9 @@ namespace VJP_App.Controllers
 
         }
 
+
+        //  User
+
         [HttpGet]
         public ActionResult UserList()
         {
@@ -56,7 +64,7 @@ namespace VJP_App.Controllers
         [HttpGet]
         public ActionResult UserProfile(int Id)
         {
-            
+
             return View(userRepository.Get(Id));
         }
 
@@ -125,104 +133,155 @@ namespace VJP_App.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirm(int id)
         {
-            
+
             if (id == 2)
             {
                 studentRepository.Delete(id);
                 userRepository.Delete(id);
                 TempData["Deleted"] = "User deleted";
             }
-
             if (id == 3)
             {
                 judgeRepository.Delete(id);
                 userRepository.Delete(id);
                 TempData["Deleted"] = "User deleted";
             }
-
             if (id == 4)
             {
                 organizationRepository.Delete(id);
                 userRepository.Delete(id);
                 TempData["Deleted"] = "User deleted";
             }
-
-
             return RedirectToAction("Index");
         }
+
+
+        //  Event
 
 
         [HttpGet]
         public ActionResult EventList()
         {
-
             return View(eventRepository.GetAll());
         }
         [HttpGet]
         public ActionResult CreateEvent()
         {
-            ViewBag.cataType = eventCategoryRepository.GetAll();
+            ViewBag.Categories = projectCategoryRepository.GetAll().ToList();
+
             return View();
         }
 
         [HttpPost]
-        public ActionResult CreateEvent(Event evnt)
+        public ActionResult CreateEvent(Event evnt, int[] categories)
         {
+
             eventRepository.Insert(evnt);
 
+            ProjectCategoryEvent pce = new ProjectCategoryEvent();
+            foreach (int cat in categories)
+            {
+                pce.EventId = evnt.Id;
+                pce.ProjectCategoryId = cat;
+                projectCategoryEventRepository.Insert(pce);
+                pce = new ProjectCategoryEvent();
+            }
             return RedirectToAction("EventList", "Admin");
         }
-
-
-        public ActionResult EventCategory()
+        public ActionResult EventDetails(int id)
         {
-            return View(eventCategoryRepository.GetAll());
-        }
+            //ViewBag.EventCategory = projectCategoryEventRepository.GetAll().FindAll(pc => pc.EventId == id).ToList();
+            var item = projectCategoryEventRepository.GetAll().FindAll(pc => pc.EventId == id).ToList();
+            ViewBag.EventCategory = item;
 
-        [ActionName("AddCategory")]
-        public ActionResult AddEventCategory()
-        {
-            return View();
-        }
-
-        [HttpPost, ActionName("AddCategory")]
-        public ActionResult AddEventCategory(EventCategory eventCategory)
-        {
-            eventCategoryRepository.Insert(eventCategory);
-            return RedirectToAction("EventCategory", "Admin");
-        }
-
-        [HttpPost]
-        public ActionResult EditCategory(EventCategory eventCategory)
-        {
-            eventCategoryRepository.Update(eventCategory);
-
-            return RedirectToAction("EventCategory", "Admin");
+            return View(eventRepository.Get(id));
         }
 
 
         [HttpGet]
-        public  ActionResult DeleteCategory(int id)
+        public ActionResult EditEvent(int id)
         {
-            return View(eventCategoryRepository.Get(id));
+            ViewBag.Categories = projectCategoryRepository.GetAll().ToList();
+            ViewBag.ExCategories = projectCategoryEventRepository.GetAll().ToList().FindAll(cat => cat.EventId == id).ToList();
+            return View(eventRepository.Get(id));
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult EditEvent(Event Event, int[] categories)
+        {
+            if (ModelState.IsValid)
+            {
+                eventRepository.Update(Event);
+
+                List<ProjectCategoryEvent> pce = projectCategoryEventRepository.GetAll().FindAll(pc => pc.EventId == Event.Id).ToList();
+                
+
+                TempData["Edited"] = "Event Edited.";
+
+                var get_event = eventRepository.Get(Event.Id);
+
+                return RedirectToAction("EventDetails", new { id = get_event.Id });
+            }
+            else
+            {
+                TempData["EditFailed"] = "Error occurs.";
+
+                return View(Event);
+            }
         }
 
 
-        [HttpPost, ActionName("DeleteCategory")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteCategoryConfirm(int id)
+        //  Categories
+
+
+        [HttpGet]
+        public ActionResult CategoryList()
         {
-            try
+            return View(projectCategoryRepository.GetAll());
+        }
+        [HttpGet]
+        public ActionResult CreateProjectCategory()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateProjectCategory(ProjectCategory projectCategory)
+        {
+            projectCategoryRepository.Insert(projectCategory);
+
+            return RedirectToAction("CategoryList", "Admin");
+        }
+        public ActionResult ProjectCategoryDetails(int id)
+        {
+            return View(projectCategoryRepository.Get(id));
+        }
+
+        [HttpGet]
+        public ActionResult EditCategory(int id)
+        {
+            return View(projectCategoryRepository.Get(id));
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult EditCategory(ProjectCategory projectCategory)
+        {
+            if (ModelState.IsValid)
             {
-                eventCategoryRepository.Delete(id);
-                TempData["DoneM"] = "Category deleted.";
+                projectCategoryRepository.Update(projectCategory);
+
+                TempData["Edited"] = "Cateogory Edited.";
+
+                var get_cateogry = eventRepository.Get(projectCategory.Id);
+
+                return RedirectToAction("ProjectCategoryDetails", new { id = get_cateogry.Id });
             }
-            catch (Exception e)
+            else
             {
-                TempData["ErrorM"] = "This category already assoniated with event(s).";
-                return RedirectToAction("DeleteCategory","Admin");
+                TempData["EditFailed"] = "Error occurs.";
+
+                return View(projectCategory);
             }
-            return RedirectToAction("EventCategory", "Admin");
         }
     }
 }

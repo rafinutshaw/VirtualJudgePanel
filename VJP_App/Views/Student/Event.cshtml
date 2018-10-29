@@ -1,0 +1,113 @@
+﻿@model VJP_Entity.Event
+
+@{
+    ViewBag.Title = "Event";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<h2>Event</h2>
+
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EventTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartingDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartingDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClosingDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClosingDate)
+        </dd>
+
+    </dl>
+</div>
+
+
+@if (ViewBag.Subs == false)
+{
+    <form>
+        <input class="btn btn-success" type="button" value="Subscribe" onclick="location.href='@Url.Action("EventSub", "Student", new { id = Model.Id })'">
+    </form>
+}
+
+else
+{
+    <form method="post" enctype="multipart/form-data">
+        Title : <input name="Title" /><br />
+        Description : <input name="Description" /><br />
+        Category : <select name="ProjectCategoryId">
+            @foreach (var item1 in ViewBag.Categories)
+            {
+                <option value=@item1.ProjectCategoryId>@item1.ProjectCategory.CategoryName</option>
+            }
+        </select>
+        <input type="file" name="file">
+        <input class="btn btn-primary" type="submit" value="Upload" onclick="location.href='@Url.Action("Event", "Student", new { EventId = Model.Id})'">
+    </form>
+
+
+    <text>  <table>
+            <tr>
+                <th>Title
+                <th />
+                <th>Description
+                <th />
+                <th>PostingDate
+                <th />
+                <th>Category
+                <th />
+                <th>
+                <th /></text>
+
+    if (ViewBag.Pro != null)
+    {
+        foreach (var pro in ViewBag.Pro)
+        {   <text>
+        <td>@pro.Title
+        <td />
+        <td> @pro.Description
+        <td />
+        <td> @pro.PostingDate
+        <td />
+        <td> @pro.ProjectCategory.CategoryName
+        <td />
+        <td> @Html.ActionLink("Download", "DownloadProject", new { name = pro.Student.FirstName, path = pro.Path })
+        <td />
+        </text>}
+    }
+    <text>
+        <table /></text>
+    @TempData["Error"]
+}
+@*<form method="post">
+        <input type="submit" value="Subscribed" disabled onclick="location.href='@Url.Action("Event", "Student", new { Id = Model.Id, EventTitle = Model.EventTitle })'">
+        }
+
+    </form>*@
+<p>
+    @Html.ActionLink("Back to Home", "Index")
+</p>

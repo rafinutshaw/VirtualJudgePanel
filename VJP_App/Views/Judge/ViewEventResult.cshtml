@@ -1,0 +1,72 @@
+﻿@model IEnumerable<VJP_Entity.Project>
+
+@{
+    ViewBag.Title = "ViewEventResult";
+    Layout = "~/Views/Shared/_JudgeLayout.cshtml";
+}
+
+<h2>View Event Result</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Event.EventTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectCategory.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Path)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalRatings)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Event.EventTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectCategory.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Download", "Download", new { name = item.Student.FirstName, path = item.Path }) |
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalRatings)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

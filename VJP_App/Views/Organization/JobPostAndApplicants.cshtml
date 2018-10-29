@@ -1,0 +1,46 @@
+﻿@model IEnumerable<VJP_Entity.JobPost>
+@{
+    ViewBag.Title = "JobPostAndApplicants";
+    Layout = "~/Views/Shared/_OrganizationLayout.cshtml";
+}
+
+<h2>Job Post</h2>
+@Html.ActionLink("Offer Job", "NewJobPost")
+
+<table class="table" border="3">
+    <tr align="center"><td>Title</td><td>Category</td><td>Full Time Job</td><td>Description</td><td>Address</td><td>Posting Date</td><td>Deadline</td><td></td><td></td></tr>
+
+
+    @foreach (var item in Model)
+    {
+
+
+    <tr align="center">
+
+        <td> @item.JobTitle </td>
+
+        <td> @item.JobCategory.Type </td>
+        @if (item.FullTimeJob == true)
+        {
+            <td> Yes </td>
+        }
+
+        else
+        {
+            <td> No </td>}
+
+        <td> @item.Description </td>
+        <td> @item.Address </td>
+        <td> @item.PostingDate </td>
+        <td> @item.LastDate </td>
+        <td> @Html.ActionLink("Edit", "EditJobPost",new { id = item.Id }) </td>
+        <td>
+       
+            @Html.ActionLink("Applicants", "ViewApplicants", new { id = item.Id })
+        </td>
+    </tr>
+
+    }
+
+
+</table>

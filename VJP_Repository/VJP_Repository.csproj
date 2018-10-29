@@ -53,6 +53,7 @@
     <Compile Include="CommentsRepository.cs" />
     <Compile Include="EducationDetailsRepository.cs" />
     <Compile Include="EventCategoryRepository.cs" />
+    <Compile Include="EventSubscribeRepository.cs" />
     <Compile Include="EventRepository.cs" />
     <Compile Include="ExperienceDetailsRepository.cs" />
     <Compile Include="JobApplyActivityRepository.cs" />
@@ -159,8 +160,69 @@
     <Compile Include="Migrations\201810070656264_judge_org_change.Designer.cs">
       <DependentUpon>201810070656264_judge_org_change.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810122207432_eventCategoryCancel.cs" />
+    <Compile Include="Migrations\201810122207432_eventCategoryCancel.Designer.cs">
+      <DependentUpon>201810122207432_eventCategoryCancel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810130629549_EventSubscribe.cs" />
+    <Compile Include="Migrations\201810130629549_EventSubscribe.Designer.cs">
+      <DependentUpon>201810130629549_EventSubscribe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810130647011_EventSubscribe_2.cs" />
+    <Compile Include="Migrations\201810130647011_EventSubscribe_2.Designer.cs">
+      <DependentUpon>201810130647011_EventSubscribe_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810130737514_Project.cs" />
+    <Compile Include="Migrations\201810130737514_Project.Designer.cs">
+      <DependentUpon>201810130737514_Project.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810130757240_Project_2.cs" />
+    <Compile Include="Migrations\201810130757240_Project_2.Designer.cs">
+      <DependentUpon>201810130757240_Project_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810131121136_ProjectCategoryEvent.cs" />
+    <Compile Include="Migrations\201810131121136_ProjectCategoryEvent.Designer.cs">
+      <DependentUpon>201810131121136_ProjectCategoryEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810131334078_JobApplyActivity_3.cs" />
+    <Compile Include="Migrations\201810131334078_JobApplyActivity_3.Designer.cs">
+      <DependentUpon>201810131334078_JobApplyActivity_3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810131418565_Rating_3.cs" />
+    <Compile Include="Migrations\201810131418565_Rating_3.Designer.cs">
+      <DependentUpon>201810131418565_Rating_3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810131424528_Rating.cs" />
+    <Compile Include="Migrations\201810131424528_Rating.Designer.cs">
+      <DependentUpon>201810131424528_Rating.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810131447185_Rating_2.cs" />
+    <Compile Include="Migrations\201810131447185_Rating_2.Designer.cs">
+      <DependentUpon>201810131447185_Rating_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810131541516_Rating_4_Auto.cs" />
+    <Compile Include="Migrations\201810131541516_Rating_4_Auto.Designer.cs">
+      <DependentUpon>201810131541516_Rating_4_Auto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810140827034_TotalRating.cs" />
+    <Compile Include="Migrations\201810140827034_TotalRating.Designer.cs">
+      <DependentUpon>201810140827034_TotalRating.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810140845001_TotalRating_2.cs" />
+    <Compile Include="Migrations\201810140845001_TotalRating_2.Designer.cs">
+      <DependentUpon>201810140845001_TotalRating_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810160434335_eventimgfile.cs" />
+    <Compile Include="Migrations\201810160434335_eventimgfile.Designer.cs">
+      <DependentUpon>201810160434335_eventimgfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810160505325_eventimgfile_2.cs" />
+    <Compile Include="Migrations\201810160505325_eventimgfile_2.Designer.cs">
+      <DependentUpon>201810160505325_eventimgfile_2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OrganizationRepository.cs" />
+    <Compile Include="ProjectCategoryEventRepository.cs" />
     <Compile Include="ProjectCategoryRepository.cs" />
     <Compile Include="ProjectGroupRepository.cs" />
     <Compile Include="ProjectRepository.cs" />
@@ -260,6 +322,51 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810070656264_judge_org_change.resx">
       <DependentUpon>201810070656264_judge_org_change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810122207432_eventCategoryCancel.resx">
+      <DependentUpon>201810122207432_eventCategoryCancel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810130629549_EventSubscribe.resx">
+      <DependentUpon>201810130629549_EventSubscribe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810130647011_EventSubscribe_2.resx">
+      <DependentUpon>201810130647011_EventSubscribe_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810130737514_Project.resx">
+      <DependentUpon>201810130737514_Project.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810130757240_Project_2.resx">
+      <DependentUpon>201810130757240_Project_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810131121136_ProjectCategoryEvent.resx">
+      <DependentUpon>201810131121136_ProjectCategoryEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810131334078_JobApplyActivity_3.resx">
+      <DependentUpon>201810131334078_JobApplyActivity_3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810131418565_Rating_3.resx">
+      <DependentUpon>201810131418565_Rating_3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810131424528_Rating.resx">
+      <DependentUpon>201810131424528_Rating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810131447185_Rating_2.resx">
+      <DependentUpon>201810131447185_Rating_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810131541516_Rating_4_Auto.resx">
+      <DependentUpon>201810131541516_Rating_4_Auto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810140827034_TotalRating.resx">
+      <DependentUpon>201810140827034_TotalRating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810140845001_TotalRating_2.resx">
+      <DependentUpon>201810140845001_TotalRating_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810160434335_eventimgfile.resx">
+      <DependentUpon>201810160434335_eventimgfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810160505325_eventimgfile_2.resx">
+      <DependentUpon>201810160505325_eventimgfile_2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

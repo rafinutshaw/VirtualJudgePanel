@@ -37,6 +37,7 @@ namespace VJP_Entity
 
         public List<ExperienceDetails> ExperienceDetails { get; set; }
 
-        //public List<JobApplyActivity> JobApplyActivities { get; set; }
+        public List<EventSubscribe> EventSubscribes { get; set; }
+        public List<Project> Projects { get; set; }
     }
 }

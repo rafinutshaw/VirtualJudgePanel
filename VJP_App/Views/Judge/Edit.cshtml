@@ -1,0 +1,89 @@
+﻿@model VJP_Entity.Judge
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_JudgeLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.JudgeId)
+
+    <div class="container form-horizontal">
+        <div class="row">
+
+            <div class="col-md-3 ">
+                <div class="list-group ">
+                    <a href="/Judge/Edit/@Session["id"]" class="list-group-item list-group-item-action active">Profile</a>
+                    <a href="/Judge/Account/@Session["id"]" class="list-group-item list-group-item-action">Account</a>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Personal Information</h4>
+                                <p>This information will appear on the leaderboard or your public profile.</p>
+                                <hr>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form>
+                                    <div class="form-group row">
+                                        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "col-4 col-form-label" })
+                                        <div class="col-8">
+                                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control here" } })
+                                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "col-4 col-form-label" })
+                                        <div class="col-8">
+                                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control here" } })
+                                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "col-4 col-form-label" })
+                                        <div class="col-8">
+                                            @Html.DropDownListFor(model => model.Gender, new List<SelectListItem>
+                                                {
+                                                    new SelectListItem{ Text="Male", Value = "Male" },
+                                                    new SelectListItem{ Text="Female", Value = "Female" }
+                                                }, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        @Html.LabelFor(model => model.About, htmlAttributes: new { @class = "col-4 col-form-label" })
+                                        <div class="col-8">
+                                            @Html.TextAreaFor(model => model.About, new { @class = "form-control", @rows = 4 })
+                                            @Html.ValidationMessageFor(model => model.About, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="offset-4 col-8">
+                                            <button name="submit" type="submit" class="btn btn-outline-primary">Update My Profile</button>
+                                            <br /> <br />
+                                            <p style="color: limegreen">@TempData["Edited"]</p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

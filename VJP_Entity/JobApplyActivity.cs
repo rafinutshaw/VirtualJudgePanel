@@ -24,5 +24,7 @@ namespace VJP_Entity
 
         [Column(TypeName = "DateTime2"), Display(Name = "Apply Date")]
         public DateTime ApplyDate { get; set; }
+
+        public string path { get; set; }
     }
 }

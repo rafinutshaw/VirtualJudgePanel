@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using System.Web;
 using System.Web.Mvc;
 using VJP_Entity;
@@ -8,7 +10,7 @@ using VJP_Interface;
 
 namespace VJP_App.Controllers
 {
-    public class OrganizationController : Controller
+    public class OrganizationController : BaseController
     {
         // GET: Judge
 
@@ -20,6 +22,9 @@ namespace VJP_App.Controllers
         private IStudentRepository studentRepository;
         private IJudgeRepository judgeRepository;
         private IOrganizationRepository organizationRepository;
+        private IJobPostRepository jobPostRepository;
+        private IJobCategoryRepository JobCategoryRepository;
+        private IJobApplyActivityRepository jobApplyActivityRepository;
 
         public OrganizationController
             (
@@ -29,7 +34,10 @@ namespace VJP_App.Controllers
             IEventCategoryRepository eventCategoryRepository,
             IStudentRepository studentRepository,
             IJudgeRepository judgeRepository,
-            IOrganizationRepository organizationRepository
+            IOrganizationRepository organizationRepository,
+            IJobPostRepository jobPostRepository,
+            IJobCategoryRepository JobCategoryRepository,
+            IJobApplyActivityRepository jobApplyActivityRepository
             )
         {
             this.accountTypeRepository = accountTypeRepository;
@@ -39,6 +47,9 @@ namespace VJP_App.Controllers
             this.studentRepository = studentRepository;
             this.judgeRepository = judgeRepository;
             this.organizationRepository = organizationRepository;
+            this.jobPostRepository = jobPostRepository;
+            this.JobCategoryRepository =JobCategoryRepository;
+            this.jobApplyActivityRepository =jobApplyActivityRepository;
         }
         public ActionResult Index()
         {
@@ -103,6 +114,84 @@ namespace VJP_App.Controllers
                 TempData["Error"] = "Passwords don't match";
                 return RedirectToAction("EditProfile", "Organization");
             }
+        }
+        [HttpGet]
+        public ActionResult JobPostAndApplicants()
+        {
+            List<JobPost> jp = jobPostRepository.GetAll().ToList().FindAll(j => j.PostedBy == (Int32)Session["id"]);
+            return View(jp);
+        }
+        [HttpGet]
+        public ActionResult NewJobPost()
+        {
+            return View(JobCategoryRepository.GetAll());
+
+        }
+        [HttpPost]
+        public ActionResult NewJobPost(JobPost jp)
+        {
+
+            jp.PostedBy = (int)Session["id"];
+            jobPostRepository.Insert(jp);
+            return RedirectToAction("JobPostAndApplicants");
+
+        }
+
+
+
+        [HttpGet]
+        public ActionResult EditJobPost(int id)
+        {
+            ViewBag.Categories = JobCategoryRepository.GetAll();
+
+            return View(jobPostRepository.Get(id));
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult EditJobPost(JobPost jobPost)
+        {
+            if (ModelState.IsValid)
+            {
+                JobPost jp = jobPostRepository.Get(jobPost.Id);
+                jp.Address = jobPost.Address;
+                jp.Description = jobPost.Description;
+                jp.FullTimeJob = jobPost.FullTimeJob;
+                jp.JobCategoryId = jobPost.JobCategoryId;
+                jp.JobTitle = jobPost.JobTitle;
+                jp.LastDate = jobPost.LastDate;
+
+                jp.PostedBy = (int)Session["id"];
+                jp.PostingDate = jobPost.PostingDate;
+                jobPostRepository.Update(jp);
+
+                TempData["Edited"] = "Account Type Edited.";
+
+                return RedirectToAction("JobPostAndApplicants", new { id = Session["id"] });
+            }
+            else
+            {
+                TempData["EditFailed"] = "Error occurs.";
+
+                return View(jobPost);
+            }
+        }
+        [HttpGet]
+        public ActionResult ViewApplicants(int id)
+        {
+            return View(jobApplyActivityRepository.GetAll().FindAll(ar => ar.JobPostId == id));
+        }
+        [HttpGet]
+        public ActionResult ViewStudentProfile(int id)
+        {
+            return View(studentRepository.Get(id));
+        }
+        public FileResult DownloadProject(string name, string path)
+        {
+            return File(@"" + Server.MapPath("~/App_Data/ProjectUploads/") + path, MediaTypeNames.Application.Octet, name + Path.GetExtension(path));
+        }
+        public FileResult DownloadCV(string name, string path)
+        {
+            return File(@"" + Server.MapPath("~/App_Data/CVUploads/") + path, MediaTypeNames.Application.Octet, name + Path.GetExtension(path));
         }
     }
 }

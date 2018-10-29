@@ -1,0 +1,99 @@
+﻿@model IEnumerable<VJP_Entity.Project>
+
+@{
+    ViewBag.Title = "EventProjects";
+    Layout = "~/Views/Shared/_JudgeLayout.cshtml";
+}
+<script src="~/Scripts/myscript.js"></script>
+<h2>Event Projects</h2>
+
+
+<table class="table">
+    <tr>
+
+        <th>
+            Category Name
+        </th>
+        <th>
+            Submitted by
+        </th>
+        <th>
+            Project Title
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Download
+        </th>
+        <th>
+            Rate
+        </th>
+        <th></th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectCategory.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostingDate)
+            </td>
+            <td>
+                @Html.ActionLink("Download", "DownloadProject", new { name = item.Student.FirstName, path = item.Path })
+
+            </td>
+
+            <td>
+
+                @{double myrate = 0; var ch = "";
+                foreach (var obj in ViewBag.Ratings)
+                {
+                    if (obj.ProjectId == item.Id)
+                    {
+                        myrate = obj.Ratings;
+
+                    }
+                }
+                }
+
+                @if (myrate == 1)
+                {
+                    ch = "checked";
+                }
+                <input type="radio" name="@item.Id" @ch value="1"> Bad<br>
+                @{ ch = "";}
+                @if (myrate == 2)
+                {
+                    ch = "checked";
+                }
+                <input type="radio" name="@item.Id" @ch value="2"> Good<br>
+                @{ ch = "";}
+                @if (myrate == 3)
+                {
+                    ch = "checked";
+                }
+                <input type="radio" name="@item.Id" @ch value="3"> Excellent
+
+            </td>
+            <td></td>
+        </tr>
+                    }
+
+</table>

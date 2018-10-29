@@ -18,5 +18,6 @@ namespace VJP_Entity
         public virtual List<Project> Project { get; set; }
 
         public virtual List<Event> Event { get; set; }
+        public virtual List<ProjectCategoryEvent> ProjectCategoryEvents { get; set; }
     }
 }

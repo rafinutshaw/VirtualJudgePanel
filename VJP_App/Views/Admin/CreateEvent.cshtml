@@ -1,59 +1,125 @@
-﻿@model IEnumerable<VJP_Repository.EventRepository>
+﻿@*@model IEnumerable<VJP_Repository.EventRepository>
+
+    @{
+
+        Layout = null;
+    }
+
+    <!DOCTYPE HTML>
+    <html>
+    <head>
+        <title>Teacher</title>
+
+
+    </head>
+    <body bgcolor="white">
+        <table border=1 width="100%" border=0 cellpadding="0" cellspacing="0">
+            <tr style="height:10vh;background-color: rgb(160, 160, 160);">
+                <td align="center" width="20%" align="center"> <strong><h1><a id="links" href="~/Teacher/Index">ExamCenter</a></h1> </strong></td>
+                <td align="right" width="80%"><a id="links" href="~/LogOut/Index">LogOut</a></td>
+
+            </tr>
+
+            <tr style="height:85vh;">
+                <td align="left" width="20%" style="background-color: rgb(160, 160, 160);">
+                    <a id="nav" href="~/Admin/Index">Home</a><br>
+                    <br>  <a id="nav" href="~/Admin/UserList">UserList</a><br>
+                    <br>  <a id="nav" href="~/Admin/EventList">EventList</a><br>
+
+
+
+                </td>
+                <td width="70%" align="center">
+                    <div>
+                        <form method="post">
+                            Event Name : <input name="EventTitle" /> <br>
+                            Start : <input name="StartingDate" type="datetime-local" /> <br>
+                            End : <input name="ClosingDate" type="datetime-local" /> <br>
+                            Description : <input name="Description" type="text" /> <br>
+
+                            <input type="submit" value="Create Event" />
+                        </form>
+
+                    </div>
+
+                </td>
+            </tr>
+
+        </table>
+    </body>
+    </html>*@
+
+
+
+@model VJP_Entity.Event
 
 @{
-    /**/
+    ViewBag.Title = "Create Event";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Scripts/myscript.js"></script>
+<h2>Create Event</h2>
 
-    /**/
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-    Layout = null;
+    <div class="form-horizontal">
+        <h4>Event</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.EventTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EventTitle, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EventTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartingDate, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                <input class="form-control" name="StartingDate" type="date" id="example-datetime-local-input">
+                @Html.ValidationMessageFor(model => model.StartingDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ClosingDate, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                <input class="form-control" name="ClosingDate" type="date" id="example-datetime-local-input">
+                @Html.ValidationMessageFor(model => model.ClosingDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        Categories<br />
+        @foreach (var item in ViewBag.Categories)
+        {
+            @*<input type="hidden" name="categories" value="@item.Id" />*@
+            @item.CategoryName <input type="checkbox" name="categories" value="@item.Id" /> <br />
+
+        }
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
 }
 
-<!DOCTYPE HTML>
-<html>
-<head>
-    <title>Teacher</title>
-
-
-</head>
-<body bgcolor="white">
-    <table border=1 width="100%" border=0 cellpadding="0" cellspacing="0">
-        <tr style="height:10vh;background-color: rgb(160, 160, 160);">
-            <td align="center" width="20%" align="center"> <strong><h1><a id="links" href="~/Teacher/Index">ExamCenter</a></h1> </strong></td>
-            <td align="right" width="80%"><a id="links" href="~/LogOut/Index">LogOut</a></td>
-
-        </tr>
-
-        <tr style="height:85vh;">
-            <td align="left" width="20%" style="background-color: rgb(160, 160, 160);">
-                <a id="nav" href="~/Admin/Index">Home</a><br>
-                <br>  <a id="nav" href="~/Admin/UserList">UserList</a><br>
-                <br>  <a id="nav" href="~/Admin/EventList">EventList</a><br>
-
-
-
-            </td>
-            <td width="70%" align="center">
-                <div>
-                    <form method="post">
-                        Event Name : <input name="EventTitle" /> <br>
-                        Event Type : <select name="EventCategory_Id">
-                            @foreach (var item in ViewBag.cataType)
-                            {
-                            <option value=@item.Id>@item.CategoryName</option>
-                            }
-                            </select>
-                        Start : <input name="StartingDate" type="datetime-local" /> <br>
-                        End : <input name="ClosingDate" type="datetime-local" /> <br>
-                        Description : <input name="Description" type="text" /> <br>
-                        
-                        <input type="submit" value="Create Event" />
-                    </form>
-
-                </div>
-
-            </td>
-        </tr>
-
-    </table>
-</body>
-</html>
+<div>
+    @Html.ActionLink("Back to List", "EventList")
+</div>

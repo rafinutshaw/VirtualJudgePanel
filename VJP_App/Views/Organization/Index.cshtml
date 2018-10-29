@@ -8,7 +8,7 @@
 }
 
 <table class="table" border="3">
-    <tr align="center"><td>Title</td><td>Start At</td><td>Closed At</td><td>Event Category</td><td>Description</td></tr>
+    <tr align="center"><td>Title</td><td>Start At</td><td>Closed At</td>@*<td>Event Category</td>*@<td>Description</td></tr>
 
 
     @foreach (var item in Model)
@@ -21,7 +21,7 @@
 
                 <td> @item.StartingDate </td>
                 <td> @item.ClosingDate </td>
-                <td> @item.EventCategory.CategoryName </td>
+                @*<td> @item.EventCategory.CategoryName </td>*@
               
                 <td> @item.Description </td>
             </tr>

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<VJP_Entity.JobApplyActivity>
+
+@{
+    ViewBag.Title = "ViewApplicants";
+    Layout = "~/Views/Shared/_OrganizationLayout.cshtml";
+}
+
+<h2>View Applicants</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.JobPost.JobTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplyDate)
+        </th>
+        <th>
+            CV
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobPost.JobTitle)
+            </td>
+            <td>
+
+                @Html.ActionLink(@item.Student.FirstName, "ViewStudentProfile", new { id = item.StudentId })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplyDate)
+            </td>
+            <td>
+                @Html.ActionLink("Download", "DownloadCV", new { name = item.Student.FirstName, path = item.path })
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

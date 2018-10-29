@@ -28,6 +28,7 @@ namespace VJP_Repository
         public DbSet<EducationDetails> EducationDetails { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<EventCategory> EventCategories { get; set; }
+        public DbSet<EventSubscribe> EventSubscribes { get; set; }
         public DbSet<ExperienceDetails> ExperienceDetails { get; set; }
         public DbSet<JobApplyActivity> JobApplyActivities { get; set; }
         public DbSet<JobCategory> JobCategories { get; set; }

@@ -13,10 +13,13 @@ namespace VJP_App.Controllers
     {
         private IAccountTypeRepository accountTypeRepository;
         private IUserRepository userRepository;
-        public SignUpController(IAccountTypeRepository accountTypeRepository, IUserRepository userRepository)
+        private IStudentRepository studentRepository;
+        public SignUpController(IAccountTypeRepository accountTypeRepository,
+            IUserRepository userRepository, IStudentRepository studentRepository)
         {
             this.accountTypeRepository = accountTypeRepository;
             this.userRepository = userRepository;
+            this.studentRepository = studentRepository;
         }
 
         [HttpGet]
@@ -44,9 +47,21 @@ namespace VJP_App.Controllers
                     user.CreateDate = DateTime.Now;
 
                     userRepository.Insert(user);
-                    TempData["Create"] = "User created!";
 
-                    return RedirectToAction("Index", "Users");
+                    Student student = new Student
+                    {
+                        StudentId = user.Id
+                    };
+                    studentRepository.Insert(student);
+
+                    Session["email"] = user.Email;
+                    Session["userType"] = user.AccountType_Id;
+                    Session["userTypeName"] = "Student";
+                    Session["id"] = user.Id;
+
+                    TempData["Create"] = "Thank you! " + user.Email + " for joining here. Please Login now!";
+
+                    return RedirectToAction("Index", "Student");
                 }
             }
             else

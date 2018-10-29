@@ -1,0 +1,49 @@
+﻿@model IEnumerable<VJP_Entity.EventSubscribe>
+
+@{
+    ViewBag.Title = "SubscribedEvents";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<h2>Subscribed Events</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Event.EventTitle)
+        </th>
+      
+       <th>
+            @Html.DisplayNameFor(model => model.Event.StartingDate)
+        </th>
+       
+<th>
+            @Html.DisplayNameFor(model => model.Event.ClosingDate)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Event.EventTitle)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Event.StartingDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Event.ClosingDate)
+        </td>
+        @*<td>
+            @Html.ActionLink("Details", "Event", new { id=item.Id }) |
+          
+        </td>*@
+    </tr>
+}
+
+</table>

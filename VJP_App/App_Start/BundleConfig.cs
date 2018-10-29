@@ -54,7 +54,7 @@ namespace VJP_App
 
 
 
-            //                      For SignUp Page
+            //                      For Home Page
 
             bundles.Add(new ScriptBundle("~/bundles/Home").Include(
                       "~/Scripts/Home/web.js"));

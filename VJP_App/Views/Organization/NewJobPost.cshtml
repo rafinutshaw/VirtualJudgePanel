@@ -1,0 +1,24 @@
+﻿@model IEnumerable<VJP_Entity.JobCategory>
+
+    @{
+        ViewBag.Title = "NewJobPost";
+        Layout = "~/Views/Shared/_OrganizationLayout.cshtml";
+    }
+
+    <h2>NewJobPost</h2>
+    <form method="post">
+        Title : <input name="JobTitle"><br />
+       
+        Category : <select name="JobCategoryId">
+            @foreach (var item in Model)
+            {
+                <option value=@item.Id>@item.Type</option>
+            }
+        </select>
+        Full Time job : <input name="FullTimeJob" type="checkbox" data-val="true"  value="true"><br />
+        Description : <input name="Description"><br />
+        Address : <input name="Address"><br />
+        Posting Date : <input name="PostingDate" type="date"><br />
+        Deadline : <input name="LastDate" type="date"><br />
+        <input type="submit" value="Post">
+    </form>
